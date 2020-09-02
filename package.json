@@ -1,0 +1,33 @@
+{
+  "name": "muvers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./dist/index.js",
+    "build": "rm -rf dist && mkdir dist && babel ./src --out-dir ./dist  --source-maps",
+    "start:dev": "nodemon --exec babel-node ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adaezeodurukwe/muvers.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adaezeodurukwe/muvers/issues"
+  },
+  "homepage": "https://github.com/adaezeodurukwe/muvers#readme",
+  "dependencies": {
+    "@babel/cli": "^7.11.5",
+    "@babel/core": "^7.11.5",
+    "@babel/node": "^7.10.5",
+    "@babel/polyfill": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
+  }
+}
