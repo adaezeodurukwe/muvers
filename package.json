@@ -6,7 +6,11 @@
   "scripts": {
     "start": "node ./dist/index.js",
     "build": "rm -rf dist && mkdir dist && babel ./src --out-dir ./dist  --source-maps",
-    "start:dev": "nodemon --exec babel-node ./src/index.js"
+    "start:dev": "nodemon --exec babel-node ./src/index.js",
+    "db:migrate": "node_modules/.bin/sequelize db:migrate",
+    "db:seed": "node_modules/.bin/sequelize db:seed:all",
+    "db:reset": "node_modules/.bin/sequelize db:migrate:undo:all",
+    "db:refresh": "npm run db:reset && npm run db:migrate"
   },
   "repository": {
     "type": "git",
@@ -28,6 +32,9 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "pg": "^8.3.3",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.5"
   }
 }
