@@ -50,18 +50,82 @@ export default class UserController {
             })
 
         } catch (error) {
-            return res.send({
+            return res.status(500).send({
                 success: false,
                 error
             })
         }
     }
 
-    static async getUsers(req, res) { }
+    static async getUsers(req, res) {
+        try {
+        const users = await UserService.findAll();
+        return res.status(200).send({
+            success: true,
+            data: users
+        })
+            
+        } catch (error) {
+            return res.status(500).send({
+                success: false,
+                error
+            })
+        }
+        
 
-    static async getSingleUser(req, res) { }
+    }
 
-    static async updateUser(req, res) { }
+    static async getSingleUser(req, res) {
+        try {
+            const {id} = req.params;
+            const user = UserService.find({id})
+            return res.status(200).send({
+                success: true,
+                data: user
+            })
+        } catch (error) {
+            return res.status(500).send({
+                success: false,
+                error
+            })
+        }
 
-    static async deleteuser(req, res) { }
+     }
+
+    static async updateUser(req, res) {
+        try {
+            const { user } = req;
+            const updatedUser = UserService.update(req.body, {id: user.id})
+            return res.status(200).send({
+                success: true,
+                message: "user updated",
+                data: updatedUser
+            });
+
+        } catch (error) {
+            return res.status(500).send({
+                success: false,
+                error
+            });
+        }
+    }
+
+    static async deleteuser(req, res) {
+        try {
+            const {user} = req;
+            await UserService.delete({id: user.id});
+            return res.status(200).send({
+                success: true,
+                message: "user deleted successfully",
+                data: user
+            });
+            
+        } catch (error) {
+            return res.status(500).send({
+                success: false,
+                error
+            })
+            
+        }
+    }
 }
