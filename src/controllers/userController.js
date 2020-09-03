@@ -8,7 +8,7 @@ export default class UserController {
       const { password } = body;
       const hashedPassword = Helpers.encryptPassword(password);
 
-      body[password] = hashedPassword;
+      body.password = hashedPassword;
 
       const user = await UserService.create(body);
 
@@ -30,7 +30,8 @@ export default class UserController {
     try {
       const { email, password } = req.body;
       const user = await UserService.find({ email });
-      const correctEmailPasswordCombination = Helpers.comparePassword(password, user.password);
+      const correctEmailPasswordCombination = await Helpers
+        .comparePassword(password, user.dataValues.password);
 
       if (!correctEmailPasswordCombination) {
         return res.status(400).send({
@@ -42,10 +43,13 @@ export default class UserController {
 
       delete user.dataValues.password;
 
+      const token = await Helpers.generateToken(user.dataValues);
+
       return res.status(200).send({
         success: true,
         data: {
-          user
+          user,
+          token
         }
       });
     } catch (error) {

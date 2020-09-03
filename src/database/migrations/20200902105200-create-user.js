@@ -23,6 +23,10 @@ module.exports = {
       phone: {
         type: Sequelize.STRING
       },
+      accountType: {
+        type: Sequelize.ENUM("admin", "client"),
+        defaultValue: "client"
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
