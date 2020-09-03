@@ -13,13 +13,13 @@ app.use(bodtParser.json());
 app.use(cors());
 
 app.get("/", (req, res) => {
-    res.status(200).send({
-        message: "welcome to muvers app"
-    })
+  res.status(200).send({
+    message: "welcome to muvers app"
+  });
 });
 
-app.use("/api/v1", routes)
+app.use("/api/v1", routes);
 
 const port = process.env.PORT;
 
-app.listen(port)
+app.listen(port);

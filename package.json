@@ -10,7 +10,8 @@
     "db:migrate": "node_modules/.bin/sequelize db:migrate",
     "db:seed": "node_modules/.bin/sequelize db:seed:all",
     "db:reset": "node_modules/.bin/sequelize db:migrate:undo:all",
-    "db:refresh": "npm run db:reset && npm run db:migrate"
+    "db:refresh": "npm run db:reset && npm run db:migrate",
+    "lint": "eslint ./src --fix"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "@babel/node": "^7.10.5",
     "@babel/polyfill": "^7.11.5",
     "@babel/preset-env": "^7.11.5",
+    "babel-eslint": "^10.1.0",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -37,5 +39,10 @@
     "pg": "^8.3.3",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.5"
+  },
+  "devDependencies": {
+    "eslint": "^7.8.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0"
   }
 }

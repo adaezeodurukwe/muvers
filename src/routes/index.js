@@ -1,15 +1,14 @@
 import express from "express";
-import Usercontroller from "../controllers/userController";
-import { validateUser } from "../middleware/userMiddleware";
+import validateUser from "../middleware/userMiddleware";
 import UserController from "../controllers/userController";
 
 const router = express.Router();
 
-router.post("/user", Usercontroller.createuser);
+router.post("/user", UserController.createuser);
 router.post("/login", UserController.login);
-router.get("/user", Usercontroller.getUsers);
-router.get("/user/:id", Usercontroller.getSingleUser);
-router.put("/user/:id", validateUser, Usercontroller.updateUser);
-router.delete("user/:id", validateUser, Usercontroller.deleteuser);
+router.get("/user", UserController.getUsers);
+router.get("/user/:id", UserController.getSingleUser);
+router.put("/user/:id", validateUser, UserController.updateUser);
+router.delete("user/:id", validateUser, UserController.deleteuser);
 
 export default router;
