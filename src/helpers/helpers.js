@@ -18,4 +18,8 @@ export default class Helpers {
   static generateToken(data) {
     return jwt.sign(data, secret);
   }
+
+  static verifyToken(token) {
+    return jwt.verify(token, secret);
+  }
 }

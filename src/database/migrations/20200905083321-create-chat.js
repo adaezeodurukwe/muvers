@@ -9,13 +9,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       parentId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       connectionId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       senderName: {
         type: Sequelize.STRING

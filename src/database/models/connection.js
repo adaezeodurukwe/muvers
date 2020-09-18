@@ -13,15 +13,14 @@ module.exports = (sequelize, DataTypes) => {
       const { Chat } = models;
       Connection.hasMany(Chat, {
         foreignKey: "connectionId",
-        as: "chats",
+        as: "chat",
         onDelete: "CASCADE"
       });
     }
   }
   Connection.init({
-    id: DataTypes.INTEGER,
-    userId: DataTypes.STRING,
-    admnId: DataTypes.STRING
+    userId: DataTypes.INTEGER,
+    adminId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: "Connection",
