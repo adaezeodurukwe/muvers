@@ -9,6 +9,9 @@ router.post("/login", UserController.login);
 router.get("/user", UserController.getUsers);
 router.get("/user/:id", UserController.getSingleUser);
 router.put("/user/:id", validateUser, UserController.updateUser);
-router.delete("user/:id", validateUser, UserController.deleteuser);
+router.delete("/user/:id", validateUser, UserController.deleteuser);
+router.get("/tickets");
+router.get("/tickets/:id");
+router.patch("/tickets/:id/note");
 
 export default router;

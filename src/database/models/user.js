@@ -12,6 +12,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      const { Ticket } = models;
+      User.hasMany(Ticket, {
+        foreignKey: "userId",
+        as: "tickets",
+        onDelete: "CASCADE"
+      });
     }
   }
   User.init({
