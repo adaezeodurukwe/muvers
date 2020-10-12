@@ -1,4 +1,5 @@
 import UserService from "../services/userService";
+import TicketService from "../services/ticketService";
 import Helpers from "../helpers/helpers";
 
 export default class UserController {
@@ -11,12 +12,18 @@ export default class UserController {
       body.password = hashedPassword;
 
       const user = await UserService.create(body);
+      const userId = user.dataValues.id;
+      const { time, note, plan } = body;
+      let ticket = {};
+      if (time && plan) {
+        ticket = await TicketService.createTicket(userId, time, note, plan);
+      }
 
       delete user.dataValues.password;
 
       return res.status(201).send({
         success: true,
-        data: user
+        data: { user, ticket }
       });
     } catch (error) {
       return res.send({

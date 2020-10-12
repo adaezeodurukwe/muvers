@@ -1,5 +1,4 @@
 import models from "../database/models";
-// import ChatService from "./chatService";
 
 const { Connection, Chat } = models;
 
