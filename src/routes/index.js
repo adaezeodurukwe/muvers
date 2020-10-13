@@ -1,7 +1,7 @@
 import express from "express";
 import validateUser from "../middleware/userMiddleware";
 import UserController from "../controllers/userController";
-import authorize from "../middleware/authMiddleware";
+import authorize, { isAdmin } from "../middleware/authMiddleware";
 import TicketController from "../controllers/ticketController";
 
 const router = express.Router();
@@ -14,6 +14,7 @@ router.put("/user/:id", validateUser, UserController.updateUser);
 router.delete("/user/:id", validateUser, UserController.deleteuser);
 router.post("ticket");
 router.get("/tickets", authorize, TicketController.getUserTickets);
+router.get("/admin/tickets", authorize, isAdmin, TicketController.getAllTickets);
 router.get("/tickets/:id");
 router.patch("/tickets/:id/note");
 

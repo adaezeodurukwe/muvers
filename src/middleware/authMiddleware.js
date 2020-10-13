@@ -14,6 +14,7 @@ export default async (req, res, next) => {
     const unsigned = await Helpers.verifyToken(token);
 
     req.userId = unsigned.id;
+    req.accountType = unsigned.accountType;
 
     return next();
   } catch (error) {
@@ -22,4 +23,16 @@ export default async (req, res, next) => {
       message: error.message,
     });
   }
+};
+
+export const isAdmin = (req, res, next) => {
+  const { accountType } = req;
+
+  if (accountType !== "admin") {
+    return res.status(401).send({
+      status: "error",
+      message: "unauthorized",
+    });
+  }
+  return next();
 };

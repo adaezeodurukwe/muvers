@@ -11,7 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     // eslint-disable-next-line no-unused-vars
     static associate(models) {
-      // define association here
+      const { User } = models;
+      Ticket.belongsTo(User, {
+        foreignKey: "userId",
+        as: "user",
+        onDelete: "CASCADE"
+      });
     }
   }
   Ticket.init({

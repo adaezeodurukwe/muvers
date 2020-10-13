@@ -16,4 +16,19 @@ export default class TicketController {
       });
     }
   }
+
+  static async getAllTickets(req, res) {
+    try {
+      const tickets = await TicketService.getAllTickets();
+      return res.status(200).send({
+        success: true,
+        data: tickets
+      });
+    } catch (error) {
+      return res.status(500).send({
+        success: false,
+        error
+      });
+    }
+  }
 }
