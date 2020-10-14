@@ -10,6 +10,7 @@ router.post("/user", UserController.createuser);
 router.post("/login", UserController.login);
 router.get("/user", UserController.getUsers);
 router.get("/user/:id", UserController.getSingleUser);
+router.get("/currentUser", authorize, UserController.getCurrentUser);
 router.put("/user/:id", validateUser, UserController.updateUser);
 router.delete("/user/:id", validateUser, UserController.deleteuser);
 router.post("ticket");

@@ -10,11 +10,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      const { Chat } = models;
+      const { Chat, User } = models;
       Connection.hasMany(Chat, {
         foreignKey: "connectionId",
         as: "chat",
         onDelete: "CASCADE"
+      });
+      Connection.belongsTo(User, {
+        foreignKey: "userId",
+        as: "user",
       });
     }
   }

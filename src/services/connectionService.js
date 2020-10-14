@@ -1,6 +1,6 @@
 import models from "../database/models";
 
-const { Connection, Chat } = models;
+const { Connection, Chat, User } = models;
 
 export default class ConnectionService {
   static async findOrCreateConnection(adminId, userId) {
@@ -14,5 +14,20 @@ export default class ConnectionService {
       }]
     });
     return { connection };
+  }
+
+  static async getAllConnections() {
+    const connections = Connection.findAll({
+      order: [
+        [{ model: Chat, as: "chat" }, "createdAt", "ASC"]
+      ],
+      include: [{
+        model: User, as: "user"
+      }, {
+        model: Chat,
+        as: "chat",
+      }]
+    });
+    return connections;
   }
 }

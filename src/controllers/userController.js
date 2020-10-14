@@ -98,6 +98,23 @@ export default class UserController {
     }
   }
 
+  static async getCurrentUser(req, res) {
+    try {
+      const { userId } = req;
+      const user = await UserService.find({ id: userId });
+      delete user.dataValues.password;
+      return res.status(200).send({
+        success: true,
+        data: user
+      });
+    } catch (error) {
+      return res.status(500).send({
+        success: false,
+        error
+      });
+    }
+  }
+
   static async updateUser(req, res) {
     try {
       const { user } = req;
