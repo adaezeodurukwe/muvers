@@ -17,6 +17,11 @@ export default class TicketService {
     return tickets;
   }
 
+  static async updateTicket(updateObject, where) {
+    const updated = await Ticket.update(updateObject, { returning: true, where });
+    return updated;
+  }
+
   static async getAllTickets() {
     const tickets = await Ticket.findAll({
       include: [{

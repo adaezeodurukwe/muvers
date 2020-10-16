@@ -24,7 +24,10 @@ module.exports = (sequelize, DataTypes) => {
     time: DataTypes.DATE,
     note: DataTypes.STRING,
     plan: DataTypes.STRING,
-    status: DataTypes.STRING
+    status: {
+      type: DataTypes.ENUM("open", "closed", "ongoing", "complete"),
+      defaultValue: "open"
+    }
   }, {
     sequelize,
     modelName: "Ticket",

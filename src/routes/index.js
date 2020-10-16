@@ -13,13 +13,13 @@ router.get("/user/:id", UserController.getSingleUser);
 router.get("/currentUser", authorize, UserController.getCurrentUser);
 router.put("/user/:id", validateUser, UserController.updateUser);
 router.delete("/user/:id", validateUser, UserController.deleteuser);
-router.post("ticket");
+router.post("/ticket", authorize, TicketController.createTicket);
+router.put("/ticket/:id", authorize, TicketController.updateTicket);
 router.get("/tickets", authorize, TicketController.getUserTickets);
-router.get("/admin/tickets", authorize, isAdmin, TicketController.getAllTickets);
-router.get("/tickets/:id");
-router.patch("/tickets/:id/note");
 
 // Admin routes
+router.get("/admin/tickets", authorize, isAdmin, TicketController.getAllTickets);
 router.get("admin/tickets", authorize, TicketController.getUserTickets);
+router.put("admin/ticket/:id", authorize, isAdmin, TicketController.updateTicket);
 
 export default router;

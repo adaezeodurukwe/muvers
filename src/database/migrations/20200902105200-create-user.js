@@ -15,7 +15,11 @@ module.exports = {
         type: Sequelize.STRING
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: {
+          args: true,
+          message: "User already exist"
+        },
       },
       password: {
         type: Sequelize.STRING

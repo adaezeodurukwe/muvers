@@ -34,5 +34,6 @@ export const isAdmin = (req, res, next) => {
       message: "unauthorized",
     });
   }
+  req.isAdmin = true;
   return next();
 };

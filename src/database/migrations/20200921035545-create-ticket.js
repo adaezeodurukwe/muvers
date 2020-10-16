@@ -25,6 +25,7 @@ module.exports = {
         values: [
           "open",
           "closed",
+          "ongoing",
           "complete"
         ],
       },
