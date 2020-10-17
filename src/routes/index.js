@@ -19,7 +19,7 @@ router.get("/tickets", authorize, TicketController.getUserTickets);
 
 // Admin routes
 router.get("/admin/tickets", authorize, isAdmin, TicketController.getAllTickets);
-router.get("admin/tickets", authorize, TicketController.getUserTickets);
-router.put("admin/ticket/:id", authorize, isAdmin, TicketController.updateTicket);
+router.get("/admin/tickets", authorize, TicketController.getUserTickets);
+router.put("/admin/ticket/:id", authorize, isAdmin, TicketController.updateTicket);
 
 export default router;
