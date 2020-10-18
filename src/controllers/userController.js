@@ -7,8 +7,16 @@ export default class UserController {
     try {
       const { body } = req;
       const { password } = body;
-      const hashedPassword = Helpers.encryptPassword(password);
 
+      const existingUser = await UserService.find({ email: body.email });
+      if (existingUser) {
+        return res.status(400).send({
+          success: false,
+          message: "user already exist"
+        });
+      }
+
+      const hashedPassword = Helpers.encryptPassword(password);
       body.password = hashedPassword;
 
       const user = await UserService.create(body);
